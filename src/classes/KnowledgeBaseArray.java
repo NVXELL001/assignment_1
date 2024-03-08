@@ -6,28 +6,53 @@ import java.util.Map;
 import interfaces.IKnowledgeBase;
 
 public class KnowledgeBaseArray implements IKnowledgeBase {
-private Map<String, Statement> statements;
+    private Statement[] statements;
 
     public KnowledgeBaseArray() {
-        statements = new HashMap<>();
+        this(new Statement[0]);
     }
 
-    public void addOrUpdateStatement(String term, String sentence, double confidenceScore) {
-        Statement existingStatement = statements.get(term);
-        if (existingStatement == null || confidenceScore > existingStatement.getConfidenceScore()) {
-            statements.put(term, new Statement(term, sentence, confidenceScore));
-        }
+    public KnowledgeBaseArray(Statement[] statements) {
+        SetStatements(statements);
+    }
+
+    public void SetStatements(Statement[] statements) {
+        this.statements = statements;
     }
 
     public Statement getStatementByTerm(String term) {
-        return statements.get(term);
+        int statementIndex = getIndexByTerm(term);
+        if (statementIndex < 0) {
+            return null;
+        }
+        return statements[statementIndex];
     }
 
     public Statement searchStatementByTermAndSentence(String term, String sentence) {
-        Statement statement = statements.get(term);
+        Statement statement = getStatementByTerm(term);
         if (statement != null && statement.getSentence().equals(sentence)) {
             return statement;
         }
         return null;
+    }
+
+    public void updateStatement(String term, String sentence, double confidenceScore) {
+        int statementIndex = getIndexByTerm(term);
+        if (statementIndex < 0) {
+            return;
+        }
+        statements[statementIndex].update(sentence, confidenceScore);
+        System.out.println("Statement updated");
+    }
+
+    private int getIndexByTerm(String term) {
+        for (int i = 0; i < statements.length; i++) {
+            String statementTerm=statements[i].getTerm();
+            if (statementTerm.equals(term)) {
+                return i;
+            }
+        }
+            System.out.println("Statement could not be found for term: " + term);
+        return -1;
     }
 }
