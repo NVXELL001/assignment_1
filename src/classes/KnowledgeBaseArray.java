@@ -46,13 +46,21 @@ public class KnowledgeBaseArray implements IKnowledgeBase {
     }
 
     private int getIndexByTerm(String term) {
+        term = term.toLowerCase();
         for (int i = 0; i < statements.length; i++) {
-            String statementTerm=statements[i].getTerm();
+            String statementTerm = statements[i].getTerm().toLowerCase();
+            String[] statementWords = statementTerm.split("\s");
+
             if (statementTerm.equals(term)) {
                 return i;
             }
+            for (String word : statementWords) {
+                if (word.equals(term)) {
+                    return i;
+                }
+            }
         }
-            System.out.println("Statement could not be found for term: " + term);
+        System.out.println("Statement could not be found for term: " + term);
         return -1;
     }
 }
