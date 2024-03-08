@@ -17,7 +17,7 @@ public class GenericsKbArrayApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-Menu menu=new Menu(scanner, false);
+        Menu menu = new Menu(scanner, false);
         while (running) {
             int choice = menu.getChoice();
             switch (choice) {
@@ -89,20 +89,20 @@ Menu menu=new Menu(scanner, false);
         System.out.print("Enter the statement: ");
         String sentence = scanner.nextLine();
         boolean validConfidence = false;
-        double confidenceScore=0.0;
+        double confidenceScore = 0.0;
         while (!validConfidence) {
             try {
                 System.out.print("Enter the confidence score: ");
-             confidenceScore = scanner.nextDouble();
-             scanner.nextLine(); // Consume newline
-             validConfidence=true;
+                confidenceScore = scanner.nextDouble();
+                scanner.nextLine(); // Consume newline
+                validConfidence = true;
             } catch (Exception e) {
                 System.out.println("Please enter valid number");
                 scanner.nextLine(); // Consume newline}
+            }
         }
-    }
+
         
-        scanner.nextLine(); // Consume newline
         KnowledgeBase.updateStatement(term, sentence, confidenceScore);
         System.out.println("Statement for term " + term + " has been updated.");
     }

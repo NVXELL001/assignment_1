@@ -41,6 +41,11 @@ public class KnowledgeBaseArray implements IKnowledgeBase {
         if (statementIndex < 0) {
             return;
         }
+        double currentConfidenceScore=statements[statementIndex].getConfidenceScore();
+        if (confidenceScore<currentConfidenceScore){
+            System.out.println("Confidence score is less than current statement in knowledge base");
+            return;
+        }
         statements[statementIndex].update(sentence, confidenceScore);
         System.out.println("Statement updated");
     }
