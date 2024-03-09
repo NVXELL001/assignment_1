@@ -11,6 +11,10 @@ public class Statement {
         this.confidenceScore = confidenceScore;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getTerm() {
         return term;
     }
@@ -23,6 +27,11 @@ public class Statement {
         return confidenceScore;
     }
 
+    /**
+     * Update the current sentence and the confidenceScore of the statement.
+     * @param sentence the new sentence.
+     * @param confidenceScore the new confidenceScore.
+     */
     public void update(String sentence, double confidenceScore) {
         this.sentence = sentence;
         this.confidenceScore = confidenceScore;

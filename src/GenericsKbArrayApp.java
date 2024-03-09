@@ -14,6 +14,10 @@ import classes.Statement;
 public class GenericsKbArrayApp {
     private static KnowledgeBaseArray KnowledgeBase;
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

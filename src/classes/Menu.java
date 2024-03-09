@@ -6,11 +6,19 @@ public class Menu {
     private Scanner scanner;
     private boolean allowAdditions;
 
+    /**
+     * Initialises an instance of the menu class.
+     * @param scanner the scanner used to read user input.
+     * @param allowAdditions indicates whether the menu includes add or update or only update.
+     */
     public Menu(Scanner scanner, boolean allowAdditions) {
         this.allowAdditions = allowAdditions;
         this.scanner = scanner;
     }
-
+/**
+ * Prints out the menu and returns the user's choice.
+ * @return the user's choice.
+ */
     public int getChoice() {
         boolean validChoice = false;
         int choice = 0;
@@ -32,6 +40,9 @@ public class Menu {
         return choice;
     }
 
+    /**
+     * This prints out the menu to the console window.
+     */
     private void printMenu() {
         System.out.println("Choose an action from the menu:");
         System.out.println("1. Load a knowledge base from a file");
